@@ -33,9 +33,9 @@ def parse_arguments():
         help="The threshold for the number of duplicates (default: 1).",
     )
 
-    # parser.add_argument(
-    #     "-d", "--delete", action="store_true", help="Delete duplicate files."
-    # )
+    parser.add_argument(
+        "-d", "--delete", action="store_true", help="Delete duplicate files."
+    )
 
     # Generate file list
     parser.add_argument(
@@ -112,9 +112,10 @@ def find_duplicate_files_by_extention(directory, extension):
 
                 print(f"{file}: {root}")
 
-                # if args.delete:
-                #     print(f"Deleting {root}/{file}")
-                #     # os.remove(file_path)
+                if args.delete:
+                    if "Photos from" in root:
+                        print(f"Deleting {root}/{file}")
+                        os.remove(file_path)
 
                 # Si l'option -f est utilisée, on écrit le nom du fichier en doublon dans le fichier texte
                 if args.file_list:
